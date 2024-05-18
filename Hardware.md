@@ -38,4 +38,6 @@ Utilizamos o protocolo MQTT para enviar as leituras dos batimentos cardíacos pa
    - Conecte o pino GND ao trilho negativo da protoboard.
   
      ## Diagrama de montagem
+![image](https://github.com/Susane-Souza/Monitor-Cardiaco/assets/160166243/a7c67144-4c35-4b9b-9682-760327ab5a12)
+
 
