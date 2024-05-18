@@ -36,5 +36,6 @@ Utilizamos o protocolo MQTT para enviar as leituras dos batimentos cardíacos pa
    - Conecte os pinos SDA e SCL aos pinos correspondentes do NodeMCU.
    - Conecte o pino VCC ao trilho positivo da protoboard.
    - Conecte o pino GND ao trilho negativo da protoboard.
-
+  
+     ## Diagrama de montagem
 
