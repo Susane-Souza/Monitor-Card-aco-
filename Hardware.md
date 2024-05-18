@@ -12,4 +12,29 @@ O display LCD é utilizado para exibir as leituras dos batimentos cardíacos em 
 ## Protoboard 400 Pontos
 Para montagem do circuito utilizamos uma protoboard de 400 pontos e cabos jumper macho para macho, macho para fêmea e fêmea para fêmea.
 
+# Comunicação e Protocolos
+
+## MQTT
+Utilizamos o protocolo MQTT para enviar as leituras dos batimentos cardíacos para um servidor na nuvem. O protocolo MQTT é leve e eficiente, ideal para dispositivos IoT com recursos limitados.
+
+## Configuração do MQTT
+- **Broker MQTT:** Utilizamos um broker público como o HiveMQ.
+- **Tópico MQTT:** As leituras são publicadas no tópico `home/heart_rate`.
+- **Cliente MQTT:** O NodeMCU ESP8266 atua como cliente MQTT, publicando as leituras dos batimentos cardíacos.
+
+  # Instruções de Montagem e Uso
+
+## Montagem do Hardware
+1. **NodeMCU ESP8266:**
+   - Conecte o pino de alimentação (3V3) à protoboard.
+   - Conecte o pino GND à protoboard.
+2. **Sensor KY-039:**
+   - Conecte o pino de saída analógica ao pino A0 do NodeMCU.
+   - Conecte o pino de alimentação (VCC) ao trilho positivo da protoboard.
+   - Conecte o pino GND ao trilho negativo da protoboard.
+3. **Display LCD:**
+   - Conecte os pinos SDA e SCL aos pinos correspondentes do NodeMCU.
+   - Conecte o pino VCC ao trilho positivo da protoboard.
+   - Conecte o pino GND ao trilho negativo da protoboard.
+
 
