@@ -12,9 +12,7 @@ Este projeto utiliza um NodeMCU para monitorar batimentos cardíacos com o senso
 
 ## Uso
 O dispositivo exibirá os batimentos cardíacos no display LCD e enviará os dados para o broker MQTT.
-
-([https://www.youtube.com/seuvideo](https://youtu.be/4j0HrrOkQro?si=lEBRAd58efIkX1gC)
-
+[Video de apresentação](https://youtu.be/4j0HrrOkQro?si=lEBRAd58efIkX1gC)
 
 ## Estrutura do Repositório
 - `Codigo/`: Contém o código fonte do projeto.
