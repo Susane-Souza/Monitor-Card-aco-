@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include <LiquidCrystal.h>
 
 // Parâmetros de conexão com wifi
 const char *ssid = "Meu wi-fi Zé ";
@@ -14,6 +15,7 @@ const char *mqtt_password = "";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+LiquidCrystal lcd(D2, D3, D4, D5, D6, D7);
 
 // Variáveis do MQTT
 bool mqtt_status = 0;
@@ -25,16 +27,6 @@ int signal;
 
 bool connectMQTT();
 void callback(char *topic, byte *payload, unsigned int length);
-
-void reconnect() {
-  while (!client.connected()) {
-    if (client.connect("ESP8266Client")) {
-      client.subscribe(topic);
-    } else {
-      delay(5000);
-    }
-  }
-}
 
 bool connectMQTT() {
   byte tentativa = 0;
@@ -85,6 +77,9 @@ void callback(char *topic, byte *payload, unsigned int length) {
 void setup() {
   Serial.begin(115200);
 
+  // Inicialização do Display LCD
+  lcd.begin(16, 2);
+
   // Conexão Wi-Fi
   WiFi.begin(ssid, password);
 
@@ -97,6 +92,8 @@ void setup() {
 
   // Configuração do MQTT
   mqtt_status = connectMQTT();
+
+  lcd.print("Connecting...");
 }
 
 void loop() {
@@ -110,10 +107,14 @@ void loop() {
   signal = analogRead(sensor);
 
   int value = signal * (3.3 / 1023.0) * 100;
+  
+  String bpmStr = String(value);
 
   Serial.println(value);
 
-  String bpmStr = String(value);
+  lcd.clear();
+  lcd.print("BPM: ");
+  lcd.print(bpmStr);
 
   client.publish(topic, bpmStr.c_str());
 
