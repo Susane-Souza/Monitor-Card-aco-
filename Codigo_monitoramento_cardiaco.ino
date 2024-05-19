@@ -1,3 +1,4 @@
+//Inclusão de Bibliotecas
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <LiquidCrystal.h>
@@ -13,6 +14,7 @@ const char *topic = "iotteste/matheus";
 const char *mqtt_user = "";
 const char *mqtt_password = "";
 
+//Inicialização de Objetos e Variáveis Globais
 WiFiClient espClient;
 PubSubClient client(espClient);
 LiquidCrystal lcd(D2, D3, D4, D5, D6, D7);
@@ -25,6 +27,11 @@ int sensor = A0;
 int interval = 600;
 int signal;
 
+//Tenta conectar ao broker MQTT até 5 vezes.
+Configura o servidor e callback MQTT.
+Gera um client_id único usando o endereço MAC do ESP8266.
+Publica uma mensagem inicial e se inscreve no tópico especificado.
+  
 bool connectMQTT();
 void callback(char *topic, byte *payload, unsigned int length);
 
@@ -63,7 +70,7 @@ bool connectMQTT() {
     return 0;
   }
 }
-
+//Função chamada quando uma mensagem chega ao tópico inscrito, imprimindo o tópico e o conteúdo da mensagem.
 void callback(char *topic, byte *payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -96,6 +103,12 @@ void setup() {
   lcd.print("Connecting...");
 }
 
+//Chama client.loop() para manter a comunicação MQTT ativa.
+Lê o valor do sensor no pino analógico A0.
+Converte o valor lido para uma escala de 0 a 100.
+Exibe o valor no display LCD.
+Publica o valor no tópico MQTT a cada 300 ms.
+  
 void loop() {
   static long long pooling = 0;
 
